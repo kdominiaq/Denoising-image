@@ -1,7 +1,6 @@
 class Params:
     '''
-    Parent class for Test class
-    also stores variables for train.py
+    Parent class for Test class nad Train class
     '''
     def __init__(self):
         self.learning_rate = 0.01
