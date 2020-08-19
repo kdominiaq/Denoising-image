@@ -40,6 +40,6 @@ class Test(Params):
             loss_test = + self._criterion_test(test_output, clean_img_test).item()
             if i == self.num_test_images - 1:
                 average_loss_test = loss_test / self.num_test_images
-                print(f'Mean loss: {average_loss_test:.4f}')
+                print(f'Average loss: {average_loss_test:.4f}')
                 break
 
