@@ -3,22 +3,25 @@ from Dataset import Dataset
 from torch import nn
 from skimage.util import random_noise
 from Autoencoder import Autoencoder
+from UNet import UNet
+from Resnet import Resnet
+
 from Params import Params
 
 
 class Train(Params):
     def __init__(self, device):
         super().__init__()
-        model = Autoencoder().cuda()
+        model = Resnet().cuda()
         criterion = nn.MSELoss()
         optimizer = torch.optim.Adam(model.parameters(), lr=self.learning_rate, weight_decay=1e-5)
 
-        train_load = Dataset.train_loader()
+        train_load = Dataset.my_256_train_loader()
         for epoch in range(self.num_epochs):
             for i, data in enumerate(train_load):
                 clean_img_train, _ = data[0], data[1]
                 noised_img_train = torch.tensor(
-                    random_noise(clean_img_train, mode='s&p', salt_vs_pepper=0.5, clip=True))
+                random_noise(clean_img_train, mode='s&p', salt_vs_pepper=0.5, clip=True))
                 # fixing "RuntimeError: Input type (torch.FloatTensor) and weight type (torch.cuda.FloatTensor) should be the same"
                 clean_img_train, noised_img_train = clean_img_train.to(device), noised_img_train.to(device)
                 output = model(noised_img_train)
@@ -38,4 +41,4 @@ class Train(Params):
             #    combined_img = torch.cat((clean_img_train, noised_img_train, output), 3) #combining images
             #    image_save(combined_img, f"./{epoch}_all_vs1.png")
 
-        torch.save(model, self.model_save_PATH)
+        torch.save(model, self.Resnet_model_save_PATH)

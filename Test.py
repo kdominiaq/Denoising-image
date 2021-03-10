@@ -13,7 +13,7 @@ def image_save(img, name):
     :param name: path name
     :return: none
     '''
-    img = img.view(img.size(0), 3, 32, -1) # -1 -> when we dont know about size of width/height -> must be 96
+    img = img.view(img.size(0), 3, 256, -1) # -1 -> when we dont know about size of width/height -> must be 96
     save_image(img, name)
 
 
@@ -23,9 +23,11 @@ class Test(Params):
         super().__init__()
         self._device = device
         self._criterion_test = nn.MSELoss()
-        model = torch.load(self.model_save_PATH)
+        model = torch.load(self.Resnet_model_save_PATH)
         model.eval()
-        for i, data in enumerate(Dataset.test_loader()):
+        print("start")
+        loss = 0
+        for i, data in enumerate(Dataset.my_256_test_loader()):
             # prepare test dataset
             clean_img_test, _ = data[0], data[1]
             noised_img_test = torch.tensor(random_noise(clean_img_test, mode='s&p', salt_vs_pepper=0.5, clip=True))
@@ -35,11 +37,13 @@ class Test(Params):
             _, predicted = torch.max(test_output.data, 1)
 
             all_test = torch.cat((clean_img_test, noised_img_test, test_output), 3)
-            image_save(all_test, f"./{i + 1}_all_vs1.png")
+            image_save(test_output, f"./test_image/Resnet/RUtest_img_{i + 1}.png")
 
-            loss_test = + self._criterion_test(test_output, clean_img_test).item()
+
+
+
+            loss += self._criterion_test(test_output, clean_img_test).item()
+            print(loss)
             if i == self.num_test_images - 1:
-                average_loss_test = loss_test / self.num_test_images
-                print(f'Average loss: {average_loss_test:.4f}')
-                break
-
+                average_loss_test = loss / self.num_test_images
+                print(f'Average loss: {average_loss_test:.8f}')

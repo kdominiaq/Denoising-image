@@ -6,6 +6,6 @@ from Train import Train
 
 DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-train = Train(DEVICE)
+#train = Train(DEVICE)
 
 test = Test(DEVICE)
