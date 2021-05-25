@@ -1,6 +1,7 @@
-# Denoising image
-
-##Introduction
+# Denoising image by deep learning - comparison of neural network architectures
+## Results
+You can check the results of the neural network [here](https://drive.google.com/drive/folders/1xKHTo6YNhnQfV7AQ5dXH8dRgfkhEQ4xF)
+## Introduction
 The environment in which the project will be run must support  **cuda**, otherwise the program will throw an error.
 Project contains three types of structures which are using in machine learning for denoising image, there are:
 - Autoencoder,
