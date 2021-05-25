@@ -2,7 +2,7 @@
 ## Results
 You can check the results of the neural network [here](https://drive.google.com/file/d/1KY74Q58q1Ef6QwV9gf4DcoKUkSit9oo7/view?usp=sharing).
 
-##Introduction
+## Introduction
 The environment in which the project will be run must support  **cuda**, otherwise the program will throw an error.
 Project contains three types of structures which are using in machine learning for denoising image, there are:
 - Autoencoder,
