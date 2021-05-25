@@ -1,14 +1,14 @@
 # Denoising image by deep learning - comparison of neural network architectures
 ## Results
-You can check the results of the neural network [here](https://drive.google.com/drive/folders/1xKHTo6YNhnQfV7AQ5dXH8dRgfkhEQ4xF)
-## Introduction
+You can check the results of the neural network [here](https://drive.google.com/file/d/1KY74Q58q1Ef6QwV9gf4DcoKUkSit9oo7/view?usp=sharing)
+## Introduction.
 The environment in which the project will be run must support  **cuda**, otherwise the program will throw an error.
 Project contains three types of structures which are using in machine learning for denoising image, there are:
 - Autoencoder,
 - UNet,
 - Resnet
 
-Conda environment for this project can be download from: [here](https://drive.google.com/drive/folders/152XI1wCo6CfD2vwqND4denkJqtDSfhFG?usp=sharing "Conda environment")
+Conda environment for this project can be download from [here](https://drive.google.com/drive/folders/152XI1wCo6CfD2vwqND4denkJqtDSfhFG?usp=sharing "Conda environment").
 
 ## Setup
 #### Parameters
