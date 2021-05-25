@@ -1,9 +1,16 @@
+"""
+Class contains all information about specification of machine learning, for example: "numbers of epochs" and paths to
+trained models.
+"""
+
+
 class Params:
-    '''
-    Parent class for Test class
-    also stores variables for train.py
-    '''
+    """
+    Parent class for Test and Train class.
+    """
     def __init__(self):
+        self.saving_image_during_learning = False
+        self.saving_image_during_testing = False
         self.learning_rate = 0.01
         self.num_epochs = 10
         self.num_train_images_in_epoch = 5000

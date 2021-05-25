@@ -1,4 +1,8 @@
+"""
+Implementation of Autoencoder Module.
+"""
 from torch import nn
+
 
 class Autoencoder(nn.Module):
     def __init__(self):

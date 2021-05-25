@@ -1,15 +1,18 @@
+"""
+Implementation of Resnet Module.
+"""
 import torch
 import torch.nn as nn
 import torchvision.models as models
 
 
 def double_conv(in_c, out_c):
-    '''
+    """
     convolution -> ReLU -> convolution
-    :param in_c: channel_in tensor
-    :param out_c: channel_out tensor
-    :return: tensor after these 3 operations
-    '''
+    :param in_c: Channel_in tensor.
+    :param out_c: Channel_out tensor.
+    :return: Tensor after these 3 operations
+.    """
     conv = nn.Sequential(
         nn.Conv2d(in_c, out_c, padding=1,kernel_size=3),
         nn.ReLU(True),
@@ -47,44 +50,24 @@ class Resnet(nn.Module):
         x1 = self.resnet_1(x)
         x2 = self.resnet_2(x)
         x4 = self.resnet_4(x)
-
         x = self.resnet_5(x)
-        #print(x.size())
 
-        ###
-        #print('----------------------------------')
         x = self.up_1(x)
-        #print(x.size())
         x = torch.cat((x, x4), dim=1)
         x = self.drop_out(x)
-        #print(x.size())
         x = self.up_conv_1(x)
-        #print(x.size())
 
-        ###
-        #print('----------------------------------')
         x = self.up_2(x)
-        #print(x.size())
         x = torch.cat((x, x2), dim=1)
         x = self.drop_out(x)
-        #print(x.size())
         x = self.up_conv_2(x)
-        #print(x.size())
 
-        ###
-        #print('----------------------------------')
         x = self.up_3(x)
-        #print(x.size())
         x = torch.cat((x, x1), dim=1)
         x = self.drop_out(x)
-        #print(x.size())
         x = self.up_conv_3(x)
-        #print(x.size())
 
-        ###
-        #print('----------------------------------')
         x = self.out_2(x)
-        #print(x.size())
 
         return x
 
